@@ -29,18 +29,20 @@ public class Client {
 			System.out.println(i);
 			return;
 		}
+	}
 
+	public void work(){
 		String line = "";
 		String line2 = "";
 		
 		try{
 			InetAddress inetAddress = InetAddress.getLocalHost();
-            		String ipAddress = inetAddress.getHostAddress();
-            		out.writeUTF(ipAddress);
-            		line = in.readUTF();
-            		System.out.println(line);
-            		line2 = input.readUTF();
-            		out.writeUTF(line2);
+            String ipAddress = inetAddress.getHostAddress();
+            out.writeUTF(ipAddress);
+            line = in.readUTF();
+            System.out.println(line);
+            line2 = input.readUTF();
+            out.writeUTF(line2);
 		}
 		catch (UnknownHostException u) {
 			System.out.println(u);
@@ -63,9 +65,9 @@ public class Client {
 		}
 	}
 
-	@SuppressWarnings("unused")
     public static void main(String args[])
 	{
 		Client client = new Client("127.0.0.1", 5000);
+		client.work();
 	}
 }
