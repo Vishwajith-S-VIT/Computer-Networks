@@ -2,15 +2,15 @@ import java.io.*;
 import java.net.*;
 
 
-public class Server {
+public class Server_23BCE1145 {
     private ServerSocket server = null;
     private Socket socket = null;
     private DataInputStream input = null;
-    public Server(int port){
+    public Server_23BCE1145(int port){
         try{
-            System.out.println("Starting server.\n");
+            System.out.println("Starting server.");
             server = new ServerSocket(port);
-            System.out.println("Waiting for a connection.\n");
+            System.out.println("Waiting for a connection.");
             socket = server.accept();
             System.out.println("Connection with client established.\n");
             input = new DataInputStream(socket.getInputStream());
@@ -24,16 +24,27 @@ public class Server {
     }
     public void Work(){
         String line = "";
-        while(!line.equalsIgnoreCase("end")){
-            try{
-                line = input.readUTF();
-                System.out.println(line);
+        try{
+            line = input.readUTF();
+            String[] arr = {"192.166.0.1", "192.168.0.168", "127.0.0.1"};
+            boolean flag = false;
+            for(String s: arr){
+                if(s.equals(line)){
+                    flag = true;
+                    break;
+                }
             }
-            catch(IOException i){
-                System.out.println(i);
+            if(flag){
+                System.out.println("Hello\n");
+            }
+            else{
+                System.out.println("Invalid\n");
             }
         }
-        System.out.println("\nClosing Connection.");
+        catch(IOException i){
+            System.out.println(i);
+        }
+        System.out.println("Closing Connection...");
         try{
             input.close();
             socket.close();

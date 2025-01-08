@@ -1,14 +1,14 @@
 import java.io.*;
 import java.net.*;
 
-public class Client{
+public class Client_23BCE1145{
     private Socket socket = null;
     private DataInputStream input = null;
     private DataOutputStream output = null;
-    public Client(String address, int port){
+    public Client_23BCE1145(String address, int port){
         try{
             socket = new Socket(address, port);
-            System.out.println("Client is connected!\n");
+            System.out.println("Client is connected!\nCheck the Server for the IP Address of the Client.\n");
             input = new DataInputStream(System.in);
             output = new DataOutputStream(socket.getOutputStream());
         }
@@ -19,18 +19,16 @@ public class Client{
             System.out.println(i);
         }
     }
-    @SuppressWarnings("deprecation")
     public void Work(){
-        String line = "";
-        while(!line.equalsIgnoreCase("end")){
-            try{
-                line = input.readLine();
-                output.writeUTF(line);
-            }
-            catch(IOException i){
-                System.out.println(i);
-            }
+        InetAddress ip = socket.getInetAddress();
+        String line = ip.getHostAddress();
+        try{
+            output.writeUTF(line);
         }
+        catch(IOException i){
+            System.out.println(i);
+        }
+        System.out.println("Closing the connection...");
         try{
             input.close();
             output.close();
@@ -41,7 +39,7 @@ public class Client{
         }
     }
     public static void main(String[] args){
-        Client client = new Client("127.0.0.1", 5000);
+        Client_23BCE1145 client = new Client_23BCE1145("127.0.0.1", 5000);
         client.Work();
     }
 }
