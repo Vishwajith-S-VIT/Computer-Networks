@@ -35,12 +35,16 @@ public class Server
 			while (!line.equals("End")){
 				try{
 					line = in.readUTF();
+					boolean flag = false;
 					for(int i = 0;i<4;i++){
-						if(line.equals(arr[i])){
+						if(line.equalsIgnoreCase(arr[i])){
 							out.writeUTF("Hello");
+							flag = true;
 						}
 					}
-
+					if(!flag){
+						out.writeUTF("Invalid.");
+					}
 				}
 				catch(IOException i){
 					System.out.println(i);
