@@ -43,6 +43,9 @@ public class Server{
                             }
 							dataOut.writeUTF(str3);
 							break;
+						default:
+							dataOut.writeUTF("Invalid Operation");
+							break;
 					}
 					connectionSocket.close();
 				}

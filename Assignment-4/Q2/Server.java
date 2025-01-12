@@ -28,6 +28,9 @@ public class Server{
                         case "Hexadecimal":
                             Out.writeUTF(Integer.toString(Integer.parseInt(n, 10), 16));
                             break;
+                        default:
+                            Out.writeUTF("Invalid Base");
+                            break;
                     }
                     
                     socket.close();
